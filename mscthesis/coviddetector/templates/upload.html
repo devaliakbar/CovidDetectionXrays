@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Detector</title>
+    <style>
+        body {
+            background-color: #4CAF50;
+            /* Background color (green) */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            /* Container background color (white) */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #4CAF50;
+            /* Title color (green) */
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            background-color: #4CAF50;
+            /* Button background color (green) */
+            color: #ffffff;
+            /* Button text color (white) */
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        label:hover {
+            background-color: #45a049;
+            /* Hover background color (a shade of green) */
+        }
+
+        #file-label {
+            margin: 10px 0;
+        }
+
+        #submit-button {
+            background-color: #4CAF50;
+            /* Submit button background color (green) */
+            color: #ffffff;
+            /* Submit button text color (white) */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #submit-button:hover {
+            background-color: #45a049;
+            /* Hover background color (a shade of green) */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Covid Detector</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="file-input">Choose Image</label>
+            <input type="file" id="file-input" name="file" accept="image/*">
+            <div id="file-label">No file selected</div>
+            <input type="submit" id="submit-button" value="Upload">
+        </form>
+    </div>
+    <script>
+        // Display the selected file name
+        const fileInput = document.getElementById('file-input');
+        const fileLabel = document.getElementById('file-label');
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileLabel.textContent = fileInput.files[0].name;
+            } else {
+                fileLabel.textContent = 'No file selected';
+            }
+        });
+    </script>
+</body>
+
+</html>
